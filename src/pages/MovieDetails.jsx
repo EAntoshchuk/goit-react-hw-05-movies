@@ -1,7 +1,10 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkLocation = useRef(location.state?.from ?? '/movies');
 
   //     useEffect(() => {
 
@@ -10,6 +13,7 @@ const MovieDetails = () => {
   return (
     <>
       <h2>MovieDetails: {movieId}</h2>
+      <Link to={backLinkLocation.current}>Back to movies</Link>
       <ul>
         <li>
           <Link to="cast">cast {movieId}</Link>
