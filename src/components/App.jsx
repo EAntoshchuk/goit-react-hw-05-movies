@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { Route, Routes, useParams } from 'react-router-dom';
-import Home from 'pages/Home';
-import Movies from 'pages/Movies';
-import MovieDetails from 'pages/MovieDetails';
 import Layout from './Layout';
 import Reviews from './Reviews';
 import Cast from './Cast';
 
+const Home = lazy(() => import('../pages/Home'));
+const Movies = lazy(() => import('../pages/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails'));
+
 export default function App() {
-  const { movieId } = useParams();
   return (
     <>
       <div
