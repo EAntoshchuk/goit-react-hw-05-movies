@@ -13,6 +13,7 @@ const options = {
 function fetchMovieCast(movie_id) {
   return fetch(`${FILMS.movieDetails}${movie_id}/credits`, options).then(
     res => {
+      console.log('castfetch', res.url);
       if (!res.ok) {
         throw new Error('Something went wrong  🤔 ');
       }

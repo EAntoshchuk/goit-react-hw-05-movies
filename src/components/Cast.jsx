@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import fetchMovieCast from 'Services/FetchMovieCast-api';
 import { toast } from 'react-toastify';
+import MagnifyingGlassLodaer from './Loader/Loader';
 const { useParams } = require('react-router-dom');
 
 const Cast = () => {
@@ -13,34 +14,39 @@ const Cast = () => {
     fetchMovieCast(movieId)
       .then(res => {
         console.log('cast', res);
-        return setCast([...res]);
+        return setCast([...res.cast]);
       })
       .catch(err => toast.warn(err))
       .finally(() => setLoading(false));
-  }, [movieId, cast]);
+  }, [movieId]);
 
-  return cast?.length ? (
+  return (
     <>
-      <div>Cast</div>
-      <ul>
-        {cast?.map(
-          actor =>
-            actor.profile_path && (
-              <li key={actor.cast_id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                  alt={actor.name}
-                />
-                <p>{actor.character}</p>
-                <p>{actor.name}</p>
-              </li>
+      {loading ? (
+        <MagnifyingGlassLodaer />
+      ) : (
+   
+        <>
+          <div>Cast</div>
+          <ul>
+            {cast.map(({ character, id, name, profile_path }) => {
+              return (
+                <li key={id} className={css.item}>
+                  <img src={`https://image.tmdb.org/t/p/w500${profile_path}`
+                  } alt={name} />
+                  <div>
+                    <p>{name}</p>
+                    <p>{character}</p>
+                  </div>
+                </li>)
             )
-        )}
-      </ul>
+          </ul>
+        </>
+      
+      )
+      }
     </>
-  ) : (
-    <p>Sorry, there is no info</p>
-  );
-};
+  )
+
 
 export default Cast;

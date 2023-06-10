@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import fetchMovieDetails from 'Services/FetchMovieDetails-api';
@@ -54,7 +54,9 @@ const MovieDetails = () => {
             </ul>
           </div>
         </div>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </>
     )
   );
