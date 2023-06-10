@@ -11,14 +11,36 @@ const Cast = () => {
   useEffect(() => {
     setLoading(true);
     fetchMovieCast(movieId)
-      .then(({ id, cast, crew }) => {
-        return setCast({ id, cast, crew });
+      .then(res => {
+        console.log('cast', res);
+        return setCast([...res]);
       })
       .catch(err => toast.warn(err))
       .finally(() => setLoading(false));
-  }, [movieId]);
+  }, [movieId, cast]);
 
-  return <div>Cast {cast}</div>;
+  return cast?.length ? (
+    <>
+      <div>Cast</div>
+      <ul>
+        {cast?.map(
+          actor =>
+            actor.profile_path && (
+              <li key={actor.cast_id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                  alt={actor.name}
+                />
+                <p>{actor.character}</p>
+                <p>{actor.name}</p>
+              </li>
+            )
+        )}
+      </ul>
+    </>
+  ) : (
+    <p>Sorry, there is no info</p>
+  );
 };
 
 export default Cast;

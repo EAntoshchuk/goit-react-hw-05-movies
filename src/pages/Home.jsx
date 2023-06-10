@@ -14,7 +14,7 @@ const Home = () => {
 
     fetchTrendMovies()
       .then(res => {
-        console.log(res);
+        console.log('trend', res);
         return setTrendingMovies([...res.results]);
       })
       .catch(err => toast.warn(err))

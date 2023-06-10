@@ -16,47 +16,47 @@ const MovieDetails = () => {
   useEffect(() => {
     setLoading(true);
     fetchMovieDetails(movieId)
-      .then(
-        ({
-          original_title,
-          overview,
-          popularity,
-          poster_path,
-          release_date,
-          title,
-          genres,
-          vote_average,
-        }) => {
-          setMovies({
-            original_title,
-            overview,
-            popularity,
-            poster_path,
-            release_date,
-            title,
-            genres,
-            vote_average,
-          });
-        }
-      )
+      .then(setMovies)
       .catch(err => toast.warn(err))
       .finally(() => setLoading(false));
   }, [movieId]);
 
   return (
-    <>
-      <h2>MovieDetails: {movieId}</h2>
-      <Link to={backLinkLocation.current}>Back to movies</Link>
-      <ul>
-        <li>
-          <Link to="cast">cast {movieId}</Link>
-        </li>
-        <li>
-          <Link to="reviews">reviews {movieId}</Link>
-        </li>
-      </ul>
-      <Outlet />
-    </>
+    movies && (
+      <>
+        <Link to={backLinkLocation.current}>Back to movies</Link>
+        <h2>MovieDetails: {movies.title}</h2>
+        <div>
+          <img
+            src={`https://image.tmdb.org/t/p/original/${movies.poster_path}`}
+            alt={movies.title}
+            loading="lazy"
+            width="300px"
+          />
+          <div>
+            {/* <h2>{movies.title}</h2> */}
+            <p>Release date: {movies.release_date}</p>
+            <p>Rating: {movies.vote_average}</p>
+            <p>Votes: {movies.vote_count}</p>
+            <h3>About the movie:</h3>
+            <br />
+            {movies.overview}
+            <br />
+          </div>
+          <div>
+            <ul>
+              <li>
+                <Link to="cast">Cast of {movies.title}</Link>
+              </li>
+              <li>
+                <Link to="reviews">Reviews of {movies.title}</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Outlet />
+      </>
+    )
   );
 };
 
