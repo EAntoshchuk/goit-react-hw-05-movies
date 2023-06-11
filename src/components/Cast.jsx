@@ -13,7 +13,7 @@ const Cast = () => {
     setLoading(true);
     fetchMovieCast(movieId)
       .then(res => {
-        console.log('cast', res);
+        // console.log('cast', res);
         return setCast([...res.cast]);
       })
       .catch(err => toast.warn(err))

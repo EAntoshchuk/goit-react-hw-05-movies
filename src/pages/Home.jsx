@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import fetchTrendMovies from 'Services/FetchTrendingMovies-api';
-import MoviesList from 'components/Movies/Movies';
+import MoviesList from 'components/Movies/MoviesList';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <ToastContainer autoClose={3000} theme="colored" /> */}
+      <ToastContainer autoClose={3000} theme="colored" />
       <h2>Home page</h2>
       <ul>
         <MoviesList movies={trendingMovies} location={location} />
