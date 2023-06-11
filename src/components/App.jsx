@@ -2,12 +2,12 @@ import React, { useEffect, useState, lazy } from 'react';
 import { Route, Routes, useParams } from 'react-router-dom';
 import Layout from './Layout';
 import Reviews from './Reviews';
-// import Cast from './Cast';
+import Cast from './Cast';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
-const Cast = lazy(() => import('../components/Cast'));
+// const Cast = lazy(() => import('../components/Cast'));
 
 export default function App() {
   return (

@@ -25,28 +25,28 @@ const Cast = () => {
       {loading ? (
         <MagnifyingGlassLodaer />
       ) : (
-   
         <>
           <div>Cast</div>
           <ul>
             {cast.map(({ character, id, name, profile_path }) => {
               return (
-                <li key={id} className={css.item}>
-                  <img src={`https://image.tmdb.org/t/p/w500${profile_path}`
-                  } alt={name} />
+                <li key={id}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                    alt={name}
+                  />
                   <div>
                     <p>{name}</p>
                     <p>{character}</p>
                   </div>
-                </li>)
-            )
+                </li>
+              );
+            })}
           </ul>
         </>
-      
-      )
-      }
+      )}
     </>
-  )
-
+  );
+};
 
 export default Cast;
