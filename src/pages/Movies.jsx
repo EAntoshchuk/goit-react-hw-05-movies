@@ -13,12 +13,12 @@ const Movies = () => {
   // const searchedMovies = movies.filter(movie => movie.includes(request));
   const [loading, setLoading] = useState(false);
 
-  const updateQueryString = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    const request = evt.target.value;
+    const request = evt.target.search.value;
+    console.log('searchrequest', request);
     if (request === '') {
-      toast.warn('Enter search request plese');
-      return setSearchParams({});
+      return toast.warn('Enter search request please');
     }
     setSearchParams({ request });
   };
@@ -43,7 +43,12 @@ const Movies = () => {
       ) : (
         <>
           <div>
-            <input type="text" value={request} onChange={updateQueryString} />
+            <input
+              type="text"
+              name="search"
+              defaultValue={request}
+              onChange={handleSubmit}
+            />
             <button onClick={() => setSearchParams({ request })}>
               Search movie
             </button>
@@ -67,7 +72,7 @@ const Movies = () => {
                 return (
                   <li key={id}>
                     <Link to={`${movies}`} state={{ from: location }}>
-                      {poster_path}
+                      {title}
                     </Link>
                   </li>
                 );
