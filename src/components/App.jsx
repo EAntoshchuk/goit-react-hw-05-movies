@@ -1,5 +1,5 @@
-import React, { useEffect, useState, lazy } from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import Reviews from './Reviews';
 import Cast from './Cast';

@@ -17,13 +17,18 @@ const Movies = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const request = evt.target.value.trim();
+    const request = evt.target.value;
     console.log('searchrequest', request);
     if (request === '') {
       return toast.warn('Enter search request please');
     }
     setSearchParams({ request });
   };
+
+  // const updateQueryString = movie => {
+  //   const nextMovie = movie !== '' ? { movie } : {};
+  //   setSearchParams(nextMovie);
+  // };
 
   useEffect(() => {
     if (request !== '') {
@@ -45,32 +50,24 @@ const Movies = () => {
       ) : (
         <>
           <div>
-            <input
+            <DebounceInput
+              minLength={2}
+              debounceTimeout={1500}
               type="text"
               name="search"
-              valuealue={request}
+              value={request}
               onChange={handleSubmit}
             />
-            <button
-              type="submit"
-              onClick={() => setSearchParams({ request: request })}
-            >
+            <button type="submit" onSubmit={handleSubmit}>
               Search movie
             </button>
             {movies.map(
               ({
-                adult,
-                backdrop_path,
-                genre_ids,
                 id,
-                original_language,
-                original_title,
                 overview,
-                popularity,
                 poster_path,
                 release_date,
                 title,
-                video,
                 vote_average,
                 vote_count,
               }) => {
@@ -88,6 +85,7 @@ const Movies = () => {
                       </h4>
                       <h5>Rating: {vote_average}</h5>
                       <h5>Votes: {vote_count}</h5>
+                      <p>{overview}</p>
                     </Link>
                   </li>
                 );
