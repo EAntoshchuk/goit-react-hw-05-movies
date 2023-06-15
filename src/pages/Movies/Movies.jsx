@@ -74,15 +74,15 @@ const Movies = () => {
                 return (
                   <li key={id}>
                     <Link to={`/movies/${id}`} state={{ from: location }}>
+                      <div>
+                        {title}
+                        <p>Release date: {release_date.slice(0, -6)}</p>
+                      </div>
                       <img
                         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                         alt={title}
                       />
 
-                      <h4>
-                        {title}
-                        <p>Release date: {release_date.slice(0, -6)}</p>
-                      </h4>
                       <h5>Rating: {vote_average}</h5>
                       <h5>Votes: {vote_count}</h5>
                       <p>{overview}</p>

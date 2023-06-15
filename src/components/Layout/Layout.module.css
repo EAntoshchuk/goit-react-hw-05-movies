@@ -1,0 +1,18 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  background-color: blue;
+  height: 40px;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+}
+
+.list_item {
+  margin-right: 20px;
+}

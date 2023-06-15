@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import fetchTrendMovies from 'Services/FetchTrendingMovies-api';
 import MoviesList from 'components/Movies/MoviesList';
+import ThreeDots from 'components/Loader/Loader';
+import css from './Home.module.css';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -23,9 +25,10 @@ const Home = () => {
 
   return (
     <div>
+      {loading && <ThreeDots />}
       <ToastContainer autoClose={3000} theme="colored" />
-      <h2>Home page</h2>
-      <ul>
+      <h2 className={css.title}>Trending Movies</h2>
+      <ul className={css.movie_list}>
         <MoviesList movies={trendingMovies} location={location} />
       </ul>
     </div>
