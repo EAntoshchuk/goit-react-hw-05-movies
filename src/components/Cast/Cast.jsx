@@ -27,7 +27,6 @@ const Cast = () => {
         <MagnifyingGlassLodaer />
       ) : (
         <>
-          <div>Cast</div>
           <ul className={css.list}>
             {cast.map(({ character, id, name, profile_path }) => {
               return (
