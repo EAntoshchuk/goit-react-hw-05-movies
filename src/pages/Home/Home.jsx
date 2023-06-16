@@ -27,7 +27,7 @@ const Home = () => {
     <div>
       {loading && <ThreeDots />}
       <ToastContainer autoClose={3000} theme="colored" />
-      <h2 className={css.title}>Trending Movies</h2>
+      <h2 className={css.title}>Trending movies</h2>
       <ul className={css.movie_list}>
         <MoviesList movies={trendingMovies} location={location} />
       </ul>

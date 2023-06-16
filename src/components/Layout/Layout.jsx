@@ -18,6 +18,13 @@ const Layout = () => {
             </NavLink>
           </li>
         </ul>
+        <div
+          style={{
+            height: '40px',
+            backgroundColor: 'yellow',
+            marginBottom: '20px',
+          }}
+        ></div>
       </header>
 
       <main>
@@ -26,7 +33,7 @@ const Layout = () => {
         </Suspense>
       </main>
 
-      <footer>Footer</footer>
+      {/* <footer>Footer</footer> */}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import fetchMovieDetails from 'Services/FetchMovieDetails-api';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const [movies, setMovies] = useState([]);
@@ -25,31 +26,58 @@ const MovieDetails = () => {
     movies && (
       <>
         <Link to={backLinkLocation.current}>Back to movies</Link>
-        <h2>MovieDetails: {movies.title}</h2>
+        <h2 className={css.title}>MovieDetails: {movies.title}</h2>
         <div>
-          <img
-            src={`https://image.tmdb.org/t/p/original/${movies.poster_path}`}
-            alt={movies.title}
-            loading="lazy"
-            width="300px"
-          />
-          <div>
-            {/* <h2>{movies.title}</h2> */}
-            <p>Release date: {movies.release_date}</p>
-            <p>Rating: {movies.vote_average}</p>
-            <p>Votes: {movies.vote_count}</p>
-            <h3>About the movie:</h3>
-            <br />
-            {movies.overview}
-            <br />
+          <div className={css.description_container}>
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movies.poster_path}`}
+              alt={movies.title}
+              loading="lazy"
+              className={css.image}
+            />
+            <div>
+              {/* <h2>{movies.title}</h2> */}
+              <p>Release date: {movies.release_date}</p>
+              <br />
+              <p>Rating: {movies.vote_average}</p>
+              <br />
+              <p>Votes: {movies.vote_count}</p>
+              <br />
+              <h3>About the movie:</h3>
+              {movies.overview}
+              <br />
+            </div>
           </div>
+
           <div>
             <ul>
-              <li>
-                <Link to="cast">Cast of {movies.title}</Link>
+              <li
+                style={{
+                  marginBottom: '8px',
+                }}
+              >
+                <Link
+                  to="cast"
+                  style={{
+                    fontSize: '18px',
+                  }}
+                >
+                  Cast of {movies.title}
+                </Link>
               </li>
-              <li>
-                <Link to="reviews">Reviews of {movies.title}</Link>
+              <li
+                style={{
+                  marginBottom: '8px',
+                }}
+              >
+                <Link
+                  to="reviews"
+                  style={{
+                    fontSize: '18px',
+                  }}
+                >
+                  Reviews of {movies.title}
+                </Link>
               </li>
             </ul>
           </div>

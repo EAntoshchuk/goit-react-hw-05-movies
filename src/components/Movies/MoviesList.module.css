@@ -6,11 +6,11 @@
 }
 
 .image {
-  object-fit: contain;
-  border-radius: 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  object-fit: contain;
+  border-radius: 35px;
 }
 
 .link {

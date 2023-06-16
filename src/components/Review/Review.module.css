@@ -1,0 +1,15 @@
+.list {
+  list-style: none;
+}
+
+.list_item {
+}
+
+.author {
+  margin-bottom: 5px;
+}
+
+.comment {
+  text-align: justify;
+  margin-bottom: 20px;
+}

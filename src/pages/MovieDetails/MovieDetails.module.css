@@ -1,0 +1,16 @@
+.title {
+  margin-bottom: 20px;
+}
+.image {
+  display: inline-block;
+  width: 300px;
+  margin-right: 50px;
+  border-radius: 35px;
+}
+
+.description_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+}
