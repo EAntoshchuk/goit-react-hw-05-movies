@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import fetchMovieDetails from 'Services/FetchMovieDetails-api';
+import MagnifyingGlassLodaer from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
@@ -25,6 +26,7 @@ const MovieDetails = () => {
   return (
     movies && (
       <>
+        {loading && <MagnifyingGlassLodaer />}
         <Link to={backLinkLocation.current}>Back to movies</Link>
         <h2 className={css.title}>MovieDetails: {movies.title}</h2>
         <div>

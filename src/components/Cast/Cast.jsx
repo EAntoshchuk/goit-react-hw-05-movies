@@ -1,4 +1,4 @@
-import { Profiler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fetchMovieCast from 'Services/FetchMovieCast-api';
 import { toast } from 'react-toastify';
 import MagnifyingGlassLodaer from '../Loader/Loader';
