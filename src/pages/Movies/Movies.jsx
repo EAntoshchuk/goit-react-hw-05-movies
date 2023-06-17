@@ -1,10 +1,11 @@
-import fetchSearchedMovies from 'Services/FetchSearchedMovies-api';
-import MagnifyingGlassLodaer from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import { DebounceInput } from 'react-debounce-input';
+import fetchSearchedMovies from 'Services/FetchSearchedMovies-api';
+import SearchForm from 'components/SearchForm/SearchForm';
+import MagnifyingGlassLodaer from 'components/Loader/Loader';
 import css from './Movies.module.css';
+import noPoster from '../../Images/no_poster_available.jpg';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -51,25 +52,7 @@ const Movies = () => {
       ) : (
         <>
           <div>
-            <div className={css.input_container}>
-              <DebounceInput
-                className={css.search_form__input}
-                minLength={2}
-                debounceTimeout={1500}
-                type="text"
-                name="search"
-                value={request}
-                onChange={handleSubmit}
-              />
-              <button
-                className={css.search_form_btn}
-                type="submit"
-                onSubmit={handleSubmit}
-              >
-                Search movie
-              </button>
-            </div>
-
+            <SearchForm request={request} handleSubmit={handleSubmit} />
             <div className={css.list_container}>
               {movies.map(
                 ({
@@ -85,7 +68,11 @@ const Movies = () => {
                     <li key={id} className={css.list_item}>
                       <Link to={`/movies/${id}`} state={{ from: location }}>
                         <img
-                          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                          src={
+                            poster_path
+                              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                              : noPoster
+                          }
                           alt={title}
                           loading="lazy"
                           className={css.image}

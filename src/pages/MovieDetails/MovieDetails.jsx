@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import fetchMovieDetails from 'Services/FetchMovieDetails-api';
 import MagnifyingGlassLodaer from 'components/Loader/Loader';
 import css from './MovieDetails.module.css';
+import noPoster from '../../Images/no_poster_available.jpg';
 
 const MovieDetails = () => {
   const [movies, setMovies] = useState([]);
@@ -23,8 +24,10 @@ const MovieDetails = () => {
       .finally(() => setLoading(false));
   }, [movieId]);
 
-  return (
-    movies && (
+  if (!movieId) {
+    return;
+  } else
+    return (
       <>
         {loading && <MagnifyingGlassLodaer />}
         <Link to={backLinkLocation.current}>Back to movies</Link>
@@ -32,7 +35,11 @@ const MovieDetails = () => {
         <div>
           <div className={css.description_container}>
             <img
-              src={`https://image.tmdb.org/t/p/original/${movies.poster_path}`}
+              src={
+                movies.poster_path
+                  ? `https://image.tmdb.org/t/p/original/${movies.poster_path}`
+                  : noPoster
+              }
               alt={movies.title}
               loading="lazy"
               className={css.image}
@@ -88,8 +95,7 @@ const MovieDetails = () => {
           <Outlet />
         </Suspense>
       </>
-    )
-  );
+    );
 };
 
 export default MovieDetails;
