@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Profiler, useEffect, useState } from 'react';
 import fetchMovieCast from 'Services/FetchMovieCast-api';
 import { toast } from 'react-toastify';
 import MagnifyingGlassLodaer from '../Loader/Loader';
 import css from './Cast.module.css';
+import unknownPerson from '../../Images/Unknown_person.jpg';
 const { useParams } = require('react-router-dom');
 
 const Cast = () => {
@@ -32,7 +33,11 @@ const Cast = () => {
               return (
                 <li key={id} className={css.list_item}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                        : unknownPerson
+                    }
                     alt={name}
                     loading="lazy"
                     className={css.image}
