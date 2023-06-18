@@ -7,7 +7,7 @@ import css from './MovieDetails.module.css';
 import noPoster from '../../Images/no_poster_available.jpg';
 
 const MovieDetails = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState('null');
   const [loading, setLoading] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
